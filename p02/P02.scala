@@ -8,9 +8,9 @@ Find the last but one element of a list.
 
 object P02 {
     def penultimate[A](list: List[A]): A = 
-        (list, list.tail) match {
-            case (h :: Nil, _)          => throw new NoSuchElementException
-            case (h :: t, th :: Nil)    => h
-            case (h :: t, th :: tt)     => penultimate(list.tail) 
+        list match {
+            case h :: _ :: Nil => h
+            case _ :: tail => penultimate(tail)
+            case _ => throw new NoSuchElementException
         }
 }
